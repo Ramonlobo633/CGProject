@@ -27,7 +27,7 @@ int posSelecionado = -1;
 GLuint gBunnyWireList = NULL;
 GLuint gBunnySolidList = NULL;
 
-string str;
+
 
 
 //variaveis globais
@@ -108,53 +108,12 @@ bool viewports = false;
 bool scissored = false;
 bool pickbyhit = false;
 
-//-------------------picking------------------
 
 
 int pontoSelecionado = 0;
 
 
-void cenario(){}
 
-//visao de duas cameras (duas viewports), viewport auxiliar sobrepondo a principal
-void viewPorts() {
-    float width = glutGUI::width;
-    float height = glutGUI::height;
-
-
-    //viewport principal
-    glViewport(0, 0, width, height);
-        glLoadIdentity();
-        gluLookAt(glutGUI::cam->e.x,glutGUI::cam->e.y,glutGUI::cam->e.z, glutGUI::cam->c.x,glutGUI::cam->c.y,glutGUI::cam->c.z, glutGUI::cam->u.x,glutGUI::cam->u.y,glutGUI::cam->u.z);
-        cenario();
-
-    //viewport auxiliar sobrepondo a principal
-    if (!scissored) {
-        //misturando com a principal
-        glViewport(0, 3*height/4, width/4, height/4);
-    } else {
-        //recortando/substituindo o pedaço
-        GUI::glScissoredViewport(0, 3*height/4, width/4, height/4);
-    }
-       cenario();
-}
-//-------------------viewPorts------------------
-
-void desenha() {
-    GUI::displayInit();
-   //displayInit();
-
-    if (!viewports) {
-        cenario();
-
-    } else {
-        viewPorts();
-    }
-
-
-
-    GUI::displayEnd();
-}
 
 //-------------------sombra-------------------
 //desenha todos os objetos que possuem sombra
@@ -347,9 +306,6 @@ void displayInit()
 
     const float ar = height>0 ? (float) width / (float) height : 1.0;
 
-//    glViewport(0, 0, width, height);
-
-//------------------projecao------------------
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(30.,ar,0.1,1000.);
@@ -648,7 +604,7 @@ void displayInner(bool manual_cam)
             }
     glPopMatrix();
 
-//-------------------sombra-------------------
+
     //sistema local 1 com sombra
     if (!normProj) {
         glPushMatrix();
@@ -1179,7 +1135,7 @@ void key(unsigned char key, int x_, int y_)
     case 'a':
         incluirObjeto = !incluirObjeto;
         break;
-    case 'j':
+    case '3':
         if (incluirObjeto) {
             objetos.push_back( new Personagem() );
         }
@@ -1200,35 +1156,9 @@ void key(unsigned char key, int x_, int y_)
         }
         break;
 
-        case 'M':
-            if (!manual_cam) {
-                glMatrixMode(GL_MODELVIEW);
-                glPushMatrix();
-                    glLoadIdentity();
-                      glTranslated(tx,ty,tz);
-                      glRotated(az,0,0,1);
-                      glRotated(ay,0,1,0);
-                      glRotated(ax,1,0,0);
-                      glScaled(sx,sy,sz);
-                    float transform[16];
-                    glGetFloatv(GL_MODELVIEW_MATRIX,transform);
-                    cout << "Matriz composicao de transformacoes (T.Rz.Ry.Rx.S):\n";
-                    mostra_matriz_transform(transform);
-                    cout << "\n";
-                glPopMatrix();
-            } else {
-                glMatrixMode(GL_MODELVIEW);
-                glPushMatrix();
-                    glLoadIdentity();
-                      gluLookAt(cam2->e.x,cam2->e.y,cam2->e.z, cam2->c.x,cam2->c.y,cam2->c.z, cam2->u.x,cam2->u.y,cam2->u.z);
-                    float transform[16];
-                    glGetFloatv(GL_MODELVIEW_MATRIX,transform);
-                    cout << "Matriz gluLookAt:\n";
-                    mostra_matriz_transform(transform);
-                    cout << "\n";
-                glPopMatrix();
-            }
-            break;
+    default:
+
+        break;
     }
 
     glutPostRedisplay();
@@ -1252,7 +1182,7 @@ int main(int argc, char *argv[])
         glutInitWindowPosition(10,10);
         glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 
-        glutCreateWindow("Trabalho 2");
+        glutCreateWindow("CG Project");
 
         glutReshapeFunc(resize);
         glutDisplayFunc(display);
