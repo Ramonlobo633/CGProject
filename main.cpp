@@ -128,9 +128,11 @@ void desenhaObjetosComSombra() {
                 glPopMatrix();
 
         }
+      //  glPushMatrix();
+      //      GUI::drawSphere(1.1,2.1,0.5,0.2);
+      //  glPopMatrix();
 
 
-  //  glPopMatrix();
     if (posSelecionado >= 0 and posSelecionado < objetos.size()) {
 
         objetos[posSelecionado]->t.x += glutGUI::dtx;
@@ -310,6 +312,7 @@ void displayInit()
     glLoadIdentity();
     gluPerspective(30.,ar,0.1,1000.);
 
+
 }
 
 void displayEnd()
@@ -392,14 +395,7 @@ void volVis(float alfa, float phi)
         float Xfp = X*far/near;
         float yfp = y*far/near;
         float Yfp = Y*far/near;
-        float xfo = x + (1.0/tan(alfa))*(far-near);
-        float Xfo = X + (1.0/tan(alfa))*(far-near);
-        float yfo = y + (1.0/tan(phi))*(far-near);
-        float Yfo = Y + (1.0/tan(phi))*(far-near);
-        float x0o = x - (1.0/tan(alfa))*(near);
-        float X0o = X - (1.0/tan(alfa))*(near);
-        float y0o = y - (1.0/tan(phi))*(near);
-        float Y0o = Y - (1.0/tan(phi))*(near);
+
     switch (normProjType) {
     case PERSP:
         glLineWidth(3.0);
@@ -633,12 +629,7 @@ void displayInner(bool manual_cam)
 
                 float alfa = alfaG*(PI/180); //grau2rad
                 float phi = phiG*(PI/180); //grau2rad
-                float transform[16] = {
-                    1.0,    0.0,    1.0/tan(alfa),   0.0,
-                    0.0,    1.0,    1.0/tan(phi),    0.0,
-                    0.0,    0.0,    1.0,             0.0,
-                    0.0,    0.0,    0.0,             1.0
-                                     };
+
         //marcacoes didaticas
             glPushMatrix();
                 if (drawCubo2x2x2) {
