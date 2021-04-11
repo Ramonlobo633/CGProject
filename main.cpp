@@ -18,6 +18,10 @@ using namespace std;
 #include <pessoal/cadeira.h>
 #include <pessoal/mesa.h>
 #include <pessoal/notebook.h>
+#include <pessoal/board.h>
+#include <pessoal/book.h>
+
+
 
 
 vector<Objeto*> objetos;
@@ -128,9 +132,6 @@ void desenhaObjetosComSombra() {
                 glPopMatrix();
 
         }
-      //  glPushMatrix();
-      //      GUI::drawSphere(1.1,2.1,0.5,0.2);
-      //  glPopMatrix();
 
 
     if (posSelecionado >= 0 and posSelecionado < objetos.size()) {
@@ -1144,6 +1145,16 @@ void key(unsigned char key, int x_, int y_)
     case '6':
         if (incluirObjeto) {
             objetos.push_back( new Notebook() );
+        }
+        break;
+    case '7':
+        if (incluirObjeto) {
+            objetos.push_back( new Book() );
+        }
+        break;
+    case '8':
+        if (incluirObjeto) {
+            objetos.push_back( new Board() );
         }
         break;
 

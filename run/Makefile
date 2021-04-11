@@ -63,7 +63,11 @@ SOURCES       = ../bib/Camera.cpp \
 		../pessoal/notebook.cpp \
 		../pessoal/cadeira.cpp \
 		../pessoal/mesa.cpp \
-		../pessoal/objeto.cpp 
+		../pessoal/objeto.cpp \
+		../pessoal/board.cpp \
+		../pessoal/book.cpp \
+		../pessoal/revolver.cpp \
+		../pessoal/robot.cpp 
 OBJECTS       = Camera.o \
 		CameraDistante.o \
 		CameraJogo.o \
@@ -77,7 +81,11 @@ OBJECTS       = Camera.o \
 		notebook.o \
 		cadeira.o \
 		mesa.o \
-		objeto.o
+		objeto.o \
+		board.o \
+		book.o \
+		revolver.o \
+		robot.o
 DIST          = /home/wolf/anaconda3/mkspecs/features/spec_pre.prf \
 		/home/wolf/anaconda3/mkspecs/common/unix.conf \
 		/home/wolf/anaconda3/mkspecs/common/linux.conf \
@@ -263,7 +271,11 @@ DIST          = /home/wolf/anaconda3/mkspecs/features/spec_pre.prf \
 		pessoal/notebook.h \
 		pessoal/cadeira.h \
 		pessoal/mesa.h \
-		pessoal/objeto.h ../bib/Camera.cpp \
+		pessoal/objeto.h \
+		pessoal/board.h \
+		pessoal/book.h \
+		pessoal/revolver.h \
+		pessoal/robot.h ../bib/Camera.cpp \
 		../bib/CameraDistante.cpp \
 		../bib/CameraJogo.cpp \
 		../bib/Desenha.cpp \
@@ -276,7 +288,11 @@ DIST          = /home/wolf/anaconda3/mkspecs/features/spec_pre.prf \
 		../pessoal/notebook.cpp \
 		../pessoal/cadeira.cpp \
 		../pessoal/mesa.cpp \
-		../pessoal/objeto.cpp
+		../pessoal/objeto.cpp \
+		../pessoal/board.cpp \
+		../pessoal/book.cpp \
+		../pessoal/revolver.cpp \
+		../pessoal/robot.cpp
 QMAKE_TARGET  = CGProject
 DESTDIR       = 
 TARGET        = CGProject
@@ -712,7 +728,11 @@ main.o: ../main.cpp ../bib/CameraDistante.h \
 		../pessoal/personagem.h \
 		../pessoal/cadeira.h \
 		../pessoal/mesa.h \
-		../pessoal/notebook.h
+		../pessoal/notebook.h \
+		../pessoal/board.h \
+		../pessoal/book.h \
+		../pessoal/revolver.h \
+		../pessoal/robot.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../main.cpp
 
 model3ds.o: ../bib/model3ds.cpp ../bib/model3ds.h
@@ -792,6 +812,54 @@ objeto.o: ../pessoal/objeto.cpp ../pessoal/objeto.h \
 		../bib/Desenha.h \
 		../gui_glut/OpenTextures.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objeto.o ../pessoal/objeto.cpp
+
+board.o: ../pessoal/board.cpp ../pessoal/board.h \
+		../bib/model3ds.h \
+		../pessoal/objeto.h \
+		../gui_glut/gui.h \
+		../gui_glut/extra.h \
+		../bib/CameraDistante.h \
+		../bib/Camera.h \
+		../bib/Vetor3D.h \
+		../bib/Desenha.h \
+		../gui_glut/OpenTextures.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o board.o ../pessoal/board.cpp
+
+book.o: ../pessoal/book.cpp ../pessoal/book.h \
+		../bib/model3ds.h \
+		../pessoal/objeto.h \
+		../gui_glut/gui.h \
+		../gui_glut/extra.h \
+		../bib/CameraDistante.h \
+		../bib/Camera.h \
+		../bib/Vetor3D.h \
+		../bib/Desenha.h \
+		../gui_glut/OpenTextures.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o book.o ../pessoal/book.cpp
+
+revolver.o: ../pessoal/revolver.cpp ../pessoal/revolver.h \
+		../bib/model3ds.h \
+		../pessoal/objeto.h \
+		../gui_glut/gui.h \
+		../gui_glut/extra.h \
+		../bib/CameraDistante.h \
+		../bib/Camera.h \
+		../bib/Vetor3D.h \
+		../bib/Desenha.h \
+		../gui_glut/OpenTextures.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o revolver.o ../pessoal/revolver.cpp
+
+robot.o: ../pessoal/robot.cpp ../pessoal/robot.h \
+		../bib/model3ds.h \
+		../pessoal/objeto.h \
+		../gui_glut/gui.h \
+		../gui_glut/extra.h \
+		../bib/CameraDistante.h \
+		../bib/Camera.h \
+		../bib/Vetor3D.h \
+		../bib/Desenha.h \
+		../gui_glut/OpenTextures.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o robot.o ../pessoal/robot.cpp
 
 ####### Install
 

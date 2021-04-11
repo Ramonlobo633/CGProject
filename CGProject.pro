@@ -27,7 +27,11 @@ HEADERS += \
     pessoal/notebook.h \
     pessoal/cadeira.h \
     pessoal/mesa.h \
-    pessoal/objeto.h
+    pessoal/objeto.h \
+    pessoal/board.h \
+    pessoal/book.h \
+    pessoal/revolver.h \
+    pessoal/robot.h
 
 SOURCES += \
     bib/Camera.cpp \
@@ -43,5 +47,9 @@ SOURCES += \
     pessoal/notebook.cpp \
     pessoal/cadeira.cpp \
     pessoal/mesa.cpp \
-    pessoal/objeto.cpp
+    pessoal/objeto.cpp \
+    pessoal/board.cpp \
+    pessoal/book.cpp \
+    pessoal/revolver.cpp \
+    pessoal/robot.cpp
 
